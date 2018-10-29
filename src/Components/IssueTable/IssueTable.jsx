@@ -1,5 +1,6 @@
 // @flow
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import IssueRow from '../../Components/IssueRow'
 import getIssues from '../../Services/IssueService'
 
 import styles from './IssueTableStyles.js'
@@ -28,7 +29,10 @@ class IssueTable extends Component<{}, IssueTableState>{
         let { issues }:IssueTableState =  this.state
 
         const renderRows = () => {
-            return <div> hi </div>
+            return issues
+                .map((issue,i) => {
+                   return <IssueRow key={i} issue={issue} />
+                })
         }
 
         const renderLoading = () =>
