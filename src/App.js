@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-import './App.css';
 import IssueTable from './Components/IssueTable'
-
-import './App.css';
 
 class App extends Component {
   render() {
