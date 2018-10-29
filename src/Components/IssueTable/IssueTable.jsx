@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import getIssues from '../../Services/IssueService'
 
-class IssueTable extends Component{
+class IssueTable extends Component<{}, IssueTableState>{
     state = {
         issues: [],
     }
@@ -21,7 +21,7 @@ class IssueTable extends Component{
 
 
     render(){
-        let { issues } =  this.state
+        let { issues }:IssueTableState =  this.state
 
         const renderRows = () => {
             return <div> hi </div>
