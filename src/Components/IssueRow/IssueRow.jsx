@@ -2,6 +2,7 @@
 import React from 'react'
 import { Button, Modal } from 'semantic-ui-react'
 
+import styles from './IssueRowStyles.js'
 import { IssueProps } from '../IssueTable/flowTypes'
 
 
@@ -10,7 +11,7 @@ const IssueRow = ({ issue }:IssueProps) => {
 
     const renderCommentsSection = () =>
             <div>
-                <h3> 10 Recent Comments </h3>
+                <h3 style={styles.commentsHeader}> 10 Recent Comments </h3>
                 { renderComments() }
             </div>
 
@@ -18,9 +19,9 @@ const IssueRow = ({ issue }:IssueProps) => {
         return comments.map((comment, i) => {
             if(comment.author && comment.bodyHTML){
                 return (
-                    <div key={i}>
+                    <div key={i} style={styles.comment}>
                         <strong>{ comment.author.login }</strong>
-                        <div
+                        <div style={styles.commentBody}
                             dangerouslySetInnerHTML={{__html: comment.bodyHTML}}>
                         </div>
                     </div>
@@ -31,18 +32,18 @@ const IssueRow = ({ issue }:IssueProps) => {
 
     return (
         <tr>
-            <td>
+            <td style={styles.cell}>
                 <div>
-                    <i className="exclamation circle icon"></i>
+                    <i className="exclamation circle icon" style={styles.openIcon}></i>
                 </div>
-                <div>
+                <div style={styles.title}>
                     <div>{ issue.title }</div>
-                    <div> by { issue.author.login } </div>
+                    <div style={styles.author}> by { issue.author.login } </div>
                 </div>
-                <div>
-                    <Modal trigger={<Button className="ui black button">View Details</Button>}>
+                <div style={styles.viewDetails}>
+                    <Modal trigger={<Button style={styles.modalButton}className="ui black button">View Details</Button>}>
                       <Modal.Header>{issue.title}</Modal.Header>
-                        <Modal.Description>
+                        <Modal.Description style={styles.bodyText}>
                             <p
                                 dangerouslySetInnerHTML={{__html: issue.bodyHTML}}>
                             </p>
