@@ -2,13 +2,17 @@
 import React, { Component } from 'react';
 import getIssues from '../../Services/IssueService'
 
+import styles from './IssueTableStyles.js'
+import { IssueTableState } from './flowTypes.js'
+
+
 class IssueTable extends Component<{}, IssueTableState>{
     state = {
         issues: [],
     }
 
     componentWillMount(){
-        getIssues() // todo: implement caching service
+        getIssues() // todo: implement caching service + pagination
             .then(response => {
                 let issues = response.data.data.repository.issues.nodes
                 console.log(issues)
@@ -29,14 +33,14 @@ class IssueTable extends Component<{}, IssueTableState>{
 
         const renderLoading = () =>
             <tr>
-                <td>Loading....</td>
+                <td style={styles.loading}>Loading....</td>
             </tr>
 
         return (
             <table className="ui one column padded fixed unstackable table">
                 <thead className="full-width">
                     <tr>
-                        <th>
+                        <th style={ styles.header } >
                             <span> Open Issues </span>
                         </th>
                     </tr>
