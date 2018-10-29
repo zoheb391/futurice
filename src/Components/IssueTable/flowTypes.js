@@ -18,6 +18,7 @@ type IssueProps = {
 
 type IssueTableState = {
     issues: Array<?IssueProps>,
+    searchTerm: String
 }
 
 export type { IssueTableState, IssueProps }
